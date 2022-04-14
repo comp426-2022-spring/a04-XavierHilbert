@@ -9,7 +9,7 @@ import db from "./database.js"
 const args = minimist(process.argv.slice(2))
 const port = args["port"] || 5000
 const help = args["help"] || false
-const log = args["logs"] || true
+const log = args["log"] || true
 const debug = args["debug"] || false
 
 if(help){
@@ -69,7 +69,8 @@ if(debug){
         res.status(404).send(data)
     });
 }
-if(log){
+
+if("false" === log){
     const accesslog = fs.createWriteStream("access.log", {flags: 'a'})
     app.use(morgan('combined', {stream: accesslog}))
 }
