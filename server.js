@@ -21,9 +21,9 @@ const app = express()
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-if(log){
-    app.use(logger)
-}
+app.use(logger)
+
+
 // Start an app server
 const server = app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%',port))
@@ -69,10 +69,10 @@ if(debug){
         res.status(404).send(data)
     });
 }
-
-const accesslog = fs.createWriteStream("access.log", {flags: 'a'})
-
-app.use(morgan('combined', {stream: accesslog}))
+if(log){
+    const accesslog = fs.createWriteStream("access.log", {flags: 'a'})
+    app.use(morgan('combined', {stream: accesslog}))
+}
 
 function logger(req, res, next){
     let logdata = {
