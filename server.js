@@ -70,7 +70,7 @@ if(debug){
     });
 }
 
-if("false" === log){
+if("false" !== log){
     const accesslog = fs.createWriteStream("access.log", {flags: 'a'})
     app.use(morgan('combined', {stream: accesslog}))
 }
