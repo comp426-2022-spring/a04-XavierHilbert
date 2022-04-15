@@ -60,8 +60,7 @@ app.get('/app/flip/call/tails', (req, res) => {
 });
 
 app.get('/app/access', (req, res) => {
-    const data = db.prepare("SELECT * FROM accesslog").all()
-    res.status(200).send(data)
+    res.status(200).send()
 });
 
 if(debug){
