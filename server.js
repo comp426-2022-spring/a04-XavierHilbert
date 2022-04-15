@@ -59,12 +59,12 @@ app.get('/app/flip/call/tails', (req, res) => {
     res.status(200).json(flipACoin("tails"))
 });
 
+app.get('/app/access', (req, res) => {
+    const data = db.prepare("SELECT * FROM accesslog").all()
+    res.status(404).send(data)
+});
+
 if(debug){
-    app.get('/app/access', (req, res) => {
-        const data = db.prepare("SELECT * FROM accesslog").all()
-        res.status(404).send(data)
-    });
-    
     app.get('/app/error', (req, res) => {
         throw new Error("Error test successful")
     });
