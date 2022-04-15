@@ -59,7 +59,7 @@ app.get('/app/flip/call/tails', (req, res) => {
     res.status(200).json(flipACoin("tails"))
 });
 
-app.get('/app/access', (req, res) => {
+app.get('/app/log/access', (req, res) => {
     res.status(200).send()
 });
 
