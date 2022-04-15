@@ -23,7 +23,6 @@ app.use(express.json());
 
 app.use(logger)
 
-
 // Start an app server
 const server = app.listen(port, () => {
     console.log('App listening on port %PORT%'.replace('%PORT%',port))
@@ -59,14 +58,14 @@ app.get('/app/flip/call/tails', (req, res) => {
     res.status(200).json(flipACoin("tails"))
 });
 
-if(debug){
+if(debug === "true"){
     app.get('/app/error', (req, res) => {
         throw new Error("Error test successful")
     });
 
-    app.get('/app/access/', (req, res) => {
+    app.get('/app/access', (req, res) => {
         const data = db.prepare("SELECT * FROM accesslog").all()
-        res.status(404).send(data)
+        res.status(200).send(data)
     });
 }
 
