@@ -60,13 +60,13 @@ app.get('/app/flip/call/tails', (req, res) => {
 });
 
 if(debug){
-    app.get('/app/error', (req, res) => {
-        throw new Error("Error test successful")
-    });
-
     app.get('/app/access', (req, res) => {
         const data = db.prepare("SELECT * FROM accesslog").all()
         res.status(404).send(data)
+    });
+    
+    app.get('/app/error', (req, res) => {
+        throw new Error("Error test successful")
     });
 }
 
