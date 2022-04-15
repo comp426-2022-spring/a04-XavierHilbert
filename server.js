@@ -59,11 +59,11 @@ app.get('/app/flip/call/tails', (req, res) => {
     res.status(200).json(flipACoin("tails"))
 });
 
-app.get('/app/log/access', (req, res) => {
-    res.status(200).send()
-});
-
 if(debug){
+    app.get('/app/log/access', (req, res) => {
+        res.status(200).send()
+    });
+    
     app.get('/app/error', (req, res) => {
         throw new Error("Error test successful")
     });
